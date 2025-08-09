@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>flash BR — Produtos Apple</title>
+<style>
+  :root {
+    --accent: #0f172a;
+    --muted: #6b7280;
+  }
+  body {
+    margin: 0; font-family: Arial, sans-serif; background: #f9fafb; color: var(--accent);
+    overflow-x: hidden;
+  }
+  header {
+    position: fixed; top: 0; left: 0; right: 0; height: 60px; background: white;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 20px; box-shadow: 0 2px 6px rgb(0 0 0 / 0.1); z-index: 1000;
+  }
+  .logo {
+    font-weight: 700; font-size: 24px; user-select: none;
+  }
+  nav a {
+    text-decoration: none; color: var(--muted); margin-left: 20px; font-weight: 600;
+  }
+  main {
+    max-width: 900px; margin: 80px auto 40px;
+    padding: 0 20px;
+  }
+  h1 {
+    font-weight: 700; font-size: 28px; margin-bottom: 12px;
+  }
+  p {
+    color: var(--muted); font-size: 16px; line-height: 1.4;
+  }
+  section.products {
+    display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;
+    margin-top: 40px;
+  }
+  .product {
+    background: white; border-radius: 16px;
+    box-shadow: 0 8px 20px rgb(0 0 0 / 0.08);
+    flex: 1 1 260px; max-width: 280px;
+    padding: 16px;
+    text-align: center;
+    transform-style: preserve-3d;
+    perspective: 800px;
+    transition: transform 0.3s ease-out;
+  }
+  .product:hover {
+    transform: rotateY(15deg) rotateX(10deg) scale(1.05);
+    box-shadow: 0 16px 30px rgb(0 0 0 / 0.15);
+  }
+  .product img {
+    max-width: 100%;
+    border-radius: 12px;
+    margin-bottom: 14px;
+  }
+  .product h2 {
+    font-size: 20px; margin: 8px 0 6px; color: var(--accent);
+  }
+  .product .price {
+    font-weight: 600; color: var(--muted);
+    margin-bottom: 12px;
+  }
+  .product a.button {
+    display: inline-block; background: var(--accent); color: white;
+    padding: 12px 20px; border-radius: 12px;
+    font-weight: 700; text-decoration: none;
+    user-select: none;
+    transition: background 0.3s ease;
+  }
+  .product a.button:hover {
+    background: #334155;
+  }
+  footer {
+    text-align: center; padding: 24px 20px; font-size: 14px; color: var(--muted);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">flash BR</div>
+  <nav>
+    <a href="#products">Produtos</a>
+    <a href="#about">Sobre</a>
+  </nav>
+</header>
+
+<main>
+
+  <section id="intro">
+    <h1>Produtos Apple com efeito 3D simples na rolagem</h1>
+    <p>Veja nossos produtos com um leve efeito 3D ao passar o mouse e role para navegar. Clique em "Abrir oferta" para visitar o Mercado Livre.</p>
+  </section>
+
+  <section id="products" class="products">
+    <article class="product" data-index="0">
+      <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=400&q=80" alt="iPhone">
+      <h2>iPhone 15 Pro</h2>
+      <div class="price">R$ 6.999</div>
+      <a href="#" class="button" target="_blank" rel="noreferrer" id="link0">Abrir oferta</a>
+    </article>
+
+    <article class="product" data-index="1">
+      <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=400&q=80" alt="MacBook Air">
+      <h2>MacBook Air M2</h2>
+      <div class="price">R$ 9.499</div>
+      <a href="#" class="button" target="_blank" rel="noreferrer" id="link1">Abrir oferta</a>
+    </article>
+
+    <article class="product" data-index="2">
+      <img src="https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b?auto=format&fit=crop&w=400&q=80" alt="Apple Watch">
+      <h2>Apple Watch Series 9</h2>
+      <div class="price">R$ 3.299</div>
+      <a href="#" class="button" target="_blank" rel="noreferrer" id="link2">Abrir oferta</a>
+    </article>
+  </section>
+
+  <section id="about" style="margin-top: 40px; color: var(--muted); font-size: 14px; max-width: 600px; margin-left:auto; margin-right:auto; text-align:center;">
+    <p>Você é afiliado? Cole seus links do Mercado Livre direto no código, no array <code>affiliateLinks</code>, e faça atualizações rápidas!</p>
+  </section>
+
+</main>
+
+<footer>
+  © 2025 flash BR - Todos os direitos reservados
+</footer>
+
+<script>
+  // Cole seus links do Mercado Livre aqui, na ordem dos produtos
+  const affiliateLinks = [
+    "https://produto.mercadolivre.com.br/MLB-EXEMPLO-IPHONE",  // iPhone
+    "https://produto.mercadolivre.com.br/MLB-EXEMPLO-MACBOOK", // MacBook
+    "https://produto.mercadolivre.com.br/MLB-EXEMPLO-WATCH"    // Apple Watch
+  ];
+
+  // Atualiza os links dos botões para seus links afiliados
+  function updateLinks() {
+    affiliateLinks.forEach((link, i) => {
+      const el = document.getElementById("link" + i);
+      if(el && link && link !== "") {
+        el.href = link;
+      } else if(el) {
+        el.href = "#";
+        el.addEventListener("click", e => {
+          e.preventDefault();
+          alert("Cole seu link do Mercado Livre no array 'affiliateLinks' no código.");
+        });
+      }
+    });
+  }
+  updateLinks();
+
+  // Efeito 3D simples ao passar o mouse nas cards (para dispositivos com pointer fine)
+  document.querySelectorAll('.product').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const rotateX = ((y - centerY) / centerY) * 10; // max 10deg rotate X
+      const rotateY = ((x - centerX) / centerX) * 15; // max 15deg rotate Y
+      card.style.transform = `rotateX(${-rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'none';
+    });
+  });
+
+  // Efeito parallax leve ao rolar a página nos produtos (translada levemente em Y)
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    document.querySelectorAll('.product').forEach((card, idx) => {
+      card.style.transform += ` translateY(${scrollY * (idx + 1) * 0.02}px)`;
+    });
+  });
+</script>
+
+</body>
+</html>
